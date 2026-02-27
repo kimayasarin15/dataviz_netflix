@@ -191,9 +191,107 @@
   }
 
     </style>
+  <style>
+    #password-overlay {
+      position: fixed;
+      inset: 0;
+      background: #121212;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Barlow Condensed", sans-serif;
+      text-transform: uppercase;
+    }
+    #password-overlay h2 {
+      color: #ffffff;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+    #password-overlay p {
+      color: rgba(255,255,255,0.5);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      padding: 0;
+      max-width: none;
+    }
+    #password-overlay input {
+      background: #1e1e1e;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 6px;
+      color: #ffffff;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      padding: 0.75rem 1.25rem;
+      text-align: center;
+      text-transform: uppercase;
+      outline: none;
+      width: 280px;
+      margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    #password-overlay input:focus {
+      border-color: #ffffff;
+    }
+    #password-overlay button {
+      background: #ffffff;
+      border: none;
+      border-radius: 6px;
+      color: #121212;
+      cursor: pointer;
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.75rem 2rem;
+      text-transform: uppercase;
+      transition: opacity 0.2s;
+      width: 280px;
+    }
+    #password-overlay button:hover { opacity: 0.85; }
+    #password-overlay .error {
+      color: #EF008F;
+      font-size: 0.95rem;
+      margin-top: 0.75rem;
+      min-height: 1.2rem;
+    }
+  </style>
   </head>
 </head>
 <body>
+
+<!-- Password Overlay -->
+<div id="password-overlay">
+  <h2>Enter Password</h2>
+  <p>This page is password protected</p>
+  <input type="password" id="pw-input" placeholder="Password" autofocus />
+  <button onclick="checkPassword()">Enter</button>
+  <div class="error" id="pw-error"></div>
+</div>
+
+<script>
+  // Set your password here:
+  const SITE_PASSWORD = "dataviz2025";
+
+  function checkPassword() {
+    const input = document.getElementById("pw-input").value;
+    if (input === SITE_PASSWORD) {
+      document.getElementById("password-overlay").style.display = "none";
+    } else {
+      document.getElementById("pw-error").textContent = "Incorrect password. Try again.";
+      document.getElementById("pw-input").value = "";
+      document.getElementById("pw-input").focus();
+    }
+  }
+
+  document.getElementById("pw-input").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") checkPassword();
+  });
+</script>
 <div class="container"> <h3>Gender Representation vs. Ratings<br> of Netflix’s Top 100 Most Viewed Movies in 2025 </h3>
 
  <div class="flex-container">
