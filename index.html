@@ -1,0 +1,248 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Intro to Data Viz Project 2 Kimaya Sarin</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  
+
+
+      body {
+        padding-block: 3rem;
+        padding-inline: 3.5rem;
+        background: #121212;
+        font-family: "Barlow Condensed", sans-serif;
+        font-style: normal;
+        text-transform: uppercase;
+          
+      }
+
+     
+      .container {
+          color: #ffffff;
+        max-width: 100rem;
+        margin: 0px auto;
+  
+      }
+    
+      .key {
+        padding-block: 3rem;
+        /*padding-inline: 3rem;*/
+        font-size: 1rem;
+      }
+
+    h3 {
+          font-weight: 700;
+          font-size: 4rem;
+          margin-block: 2rem;
+          line-height: 85%;
+
+          
+
+    }
+
+    h4 {
+          font-weight: 400;
+          line-height: 90%;
+          font-size: 2rem;
+          line-height: 90%;
+          color: #ffffff;
+
+    }
+
+     p {
+    
+          font-weight: 400;
+          font-size: 1.2rem;
+          line-height: 90%;
+          color: #ffffff;
+          padding-block: 1rem;
+          max-width: 80ch;
+
+    }
+
+    li {
+          font-weight: 400;
+          font-size: 1.5rem;
+          line-height: 90%;
+          margin: 0.5rem;
+          padding: 1rem;
+          color:  #121212;
+          border-radius: 8px;
+         
+    }
+
+
+
+    ul {
+/*       display: flex; */
+      justify-content: start;
+      flex-wrap: wrap;
+      list-style-type: none;
+      padding-left: 0; 
+      margin-left: 0;
+    }
+   
+   .title {
+        padding-block: 1rem;
+        /*padding-inline: 3rem;*/
+   }
+
+   .newtitle {
+         display: flex;
+          justify-content: start;
+          flex-wrap: wrap;
+          margin-top: 0.5rem;
+   }
+
+.netflix {
+ color: #ffffff;
+  border-color: #ffffff;
+  border-style: solid;
+  border-width: 0.1rem;
+}
+
+.other {
+  color: #121212;
+  background-color: #ffffff;
+}
+
+
+  .footer {
+        padding-block: 1rem;
+        /*padding-inline: 3rem;*/
+
+
+  }
+
+  .comedy {
+       background-color: #D0FF59;
+    }
+
+
+ .drama {
+       background-color: #6B44EE;
+    }
+
+.docu {
+       background-color: #5BA9C8   
+    }
+
+
+.action {
+       background-color: #EF008F;
+    }
+
+.animation {
+       background-color: #FF4D00;
+    }
+
+.romance {
+       background-color: #EE72FF;
+    }
+
+.thriller {
+       background-color: #B6ECFF;
+    }
+
+.sci {
+       background-color: #86FF8A;
+    }
+
+#info_window {
+   font-family: "Barlow Condensed", sans-serif;
+        font-style: normal;
+        text-transform: uppercase;
+
+}
+     .flex-container{
+        display:flex;
+        align-items:flex-start;
+        margin: 0px auto;
+      }
+      
+
+  .text-section{
+        flex:1;
+        /*margin-right:2rem;*/
+      }
+
+       #chart{
+        padding-top: 0rem;
+        flex:3;
+        padding-left: 4rem;
+        background-color: #121212;
+      }
+/*  this makes the chart responsive */
+     svg { 
+        display: block;
+        width: 100%;
+        height: 100%;
+
+      }
+
+
+ 
+
+      
+    li  {
+    cursor: pointer;
+  }
+
+    </style>
+  </head>
+</head>
+<body>
+<div class="container"> <h3>Gender Representation vs. Ratings<br> of Netflix’s Top 100 Most Viewed Movies in 2025 </h3>
+
+ <div class="flex-container">
+ <div class="text-section">
+   <h4>Data collected from Netflix and IMDb</h4>
+  <p> This chart shows the relationship between gender and ratings in Netflix's Top 100 most viewed movies. The size of the circles represent the total views and they are color coded by genre. Movies highlighted with a white stroke represent Netflix Originals. You can hover over each point to find more information about each movie. </p>
+
+	<div class="key">
+<!-- 
+		<p class="title">Key</p>
+ -->
+		<ul> 
+		<li class="comedy">Comedy</li>
+		<li class="drama">Drama</li>
+		<li class="docu"> Documentary </li>
+		<li class="action"> Action </li>
+		<li class="animation">Animation</li>
+		<li class="romance">Romance </li>
+		<li class="thriller">Thriller</li>
+		<li class="sci">Sci Fi</li>
+	  </ul>
+	
+	  <ul class="newtitle">
+		<li class="netflix">Netflix Original</li>
+		<li class="other">Other Production Company</li>
+	  </ul>
+
+  <!-- <p> The size of the circles represent total views for each movie </p> -->
+
+	</div> 
+
+
+	<div> 
+	  <p class="footer"> Kimaya Sarin Intro to Data Viz 2025 </p>
+	</div>
+  </div>
+
+  <div id="chart" style="position: relative;"></div>
+ </div>
+  <!--   this will hold the tooltip -->
+
+  <div id="info_window"></div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+   <script src="data.js"></script>
+  <script src="diagram.js"></script>
+
+  
+
+</body>
+</html>
